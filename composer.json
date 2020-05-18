@@ -1,0 +1,19 @@
+{
+    "name": "timnashcouk/wp-cli-auto-updater",
+    "description": "Automatic updater for WP-CLI to keep WP-CLI up to date",
+    "type": "wp-cli-package",
+    "homepage": "https://github.com/timnashcouk/wp-cli-autoupdater",
+    "support": {
+        "issues": "https://github.com/timnashcouk/wp-cli-autoupdater/issues"
+    },
+    "license": "GPL2",
+    "authors": [
+        {
+            "name": "Tim Nash",
+            "email": "site@timnash.co.uk"
+        }
+    ],
+  "autoload": {
+    "files": [ "auto-update.php" ]
+  }
+}
