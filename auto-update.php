@@ -30,8 +30,9 @@ WP_CLI::add_hook('before_run_command', function(){
    * Where extra config might be Commmand | SubCommand
    */
   if( !empty( WP_CLI::get_runner()->arguments ) && isset( WP_CLI::get_runner()->arguments[1] ) ){
+    $args = implode(' ', WP_CLI::get_runner()->arguments);
     $extra_config = WP_CLI::get_runner()->extra_config[
-                      WP_CLI::get_runner()->arguments[0].' '.WP_CLI::get_runner()->arguments[1]
+                      $args
                     ];
   }else{
     return;
