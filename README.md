@@ -1,6 +1,11 @@
 # wp-cli-auto-updater
 Provides an Auto Update feature similar to Brew Auto updater
 ### Installation
+Via Packagist:
+```
+wp package install timnashcouk/wp-cli-auto-updater
+```
+or directly from Github
 ```
 wp package install git@github.com:timnashcouk/wp-cli-auto-updater.git
 ```
