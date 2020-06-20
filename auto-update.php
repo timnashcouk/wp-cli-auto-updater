@@ -26,12 +26,17 @@ if ( ! defined( 'WP_CLI' ) ) {
  */
 WP_CLI::add_hook('before_run_command', function(){
   /*
-   * This is a tad hacky as we are not yet in a command, so have to guess
+   * This is a tad hacky as we are not yet in a command, so have to guess, bail if no or just one argument is present i.e wp help
    * Where extra config might be Commmand | SubCommand
    */
-  $extra_config = WP_CLI::get_runner()->extra_config[
-                    WP_CLI::get_runner()->arguments[0].' '.WP_CLI::get_runner()->arguments[1]
-                  ];
+  if( !empty( WP_CLI::get_runner()->arguments ) && isset( WP_CLI::get_runner()->arguments[1] ) ){
+    $extra_config = WP_CLI::get_runner()->extra_config[
+                      WP_CLI::get_runner()->arguments[0].' '.WP_CLI::get_runner()->arguments[1]
+                    ];
+  }else{
+    return;
+  }
+
   /*
    * Test conditions:
    * If its wp cli [command]
@@ -48,7 +53,7 @@ WP_CLI::add_hook('before_run_command', function(){
    * So um sorry windows folks, however it seems an assumption other parts of WP-CLI makes
    */
   $home = Utils\get_home_dir();
-  
+
   try{
     $last_check = trim( @file_get_contents( $home . '/.wp-cli/LASTCHECK' ) );
   } catch ( Exception $e ){
